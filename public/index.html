@@ -1,1 +1,54 @@
-
+<html>
+    <head>
+        <title>Mathe Schnecke</title>       
+    </head>
+    <script src="alea.min.js"></script>
+    <script src="matheschnecke.js"></script>
+    <body onLoad="matheSchnecke()">
+        <style type="text/css">@media print { .no-print, .no-print * { display: none !important; } }</style>
+        <div class="no-print">
+            <form id="config">
+                <table>
+                <tr><td>Presets:<td><select id="presets" onChange="
+                    if (document.getElementById('presets').value == 'anything_100') {
+                        document.getElementById('rows').value = 10;
+                        document.getElementById('columns').value = 10;
+                        document.getElementById('max_number').value = 100;
+                        document.getElementById('operations').value = '+-**//';
+                        document.getElementById('restrict_multi').value = 100;
+                    };
+                    if (document.getElementById('presets').value == 'multiplication_10') {
+                        document.getElementById('rows').value = 6;
+                        document.getElementById('columns').value = 6;
+                        document.getElementById('max_number').value = 100;
+                        document.getElementById('operations').value = '*/';
+                        document.getElementById('restrict_multi').value = 10;
+                    };
+                    if (document.getElementById('presets').value == 'multiplication_20') {
+                        document.getElementById('rows').value = 10;
+                        document.getElementById('columns').value = 10;
+                        document.getElementById('max_number').value = 400;
+                        document.getElementById('operations').value = '*/';
+                        document.getElementById('restrict_multi').value = 20;
+                    };
+                    ">
+                    <option value="anything_100">Anything goes up to 100</option>
+                    <option value="multiplication_10">Multiplication/division up to 10</option>
+                    <option value="multiplication_20">Multiplication/division up to 20</option>
+                    <option value="custom">Custom</option>
+                </select><br>
+                <tr><td>Rows:<td><input id="rows" value="10" onChange="document.getElementById('presets').value = 'custom';"><br>
+                <tr><td>Columns:<td><input id="columns" value="10" onChange="document.getElementById('presets').value = 'custom';"><br>
+                <tr><td>Max Number:<td><input id="max_number" value="100" onChange="document.getElementById('presets').value = 'custom';"><br>
+                <tr><td>Operations:<td><input id="operations" value="+-**//" onChange="document.getElementById('presets').value = 'custom';"><br>
+                <tr><td>Restrict Multiplication/Division:<td><input id="restrict_multi" value="100" onChange="document.getElementById('presets').value = 'custom';"><br>
+                <tr><td>Seed:<td><input id="seed" value=""><br>
+                <tr><td>Show Solution:<td><input type="checkbox" onChange="toggle(document.querySelectorAll('.solution'));"><br>
+                </table>
+                <input type="button" value="Go!" id="button_schnecke" onClick="matheSchnecke();">
+                <input type="button" value="?" id="button_help" onClick="matheSchneckeHelp();">
+            </form>
+        </div>
+        <div id="schnecke">Schnecke hier</div>
+    </body>
+</html>
